@@ -65,17 +65,39 @@ class LinkedList {
       while (current.next) {
         count++;
         current = current.next;
-        if(count===index){
+        if(count===index-1){
           break;
         }
       }
       const nextData=current.next;
       current.next=node;
       node.next=nextData;
+     this.size++;
     }
   }
 
-  
+  removeAt(index){
+    if (index === 0) {
+      this.head=this.head.next;
+      this.size--;
+    } else if (index > this.size - 1) {
+      return;
+    } else {
+      let count = 0;
+      let current = this.head;
+      while (current.next) {
+        count++;
+        current = current.next;
+        if(count===index-1){
+          break;
+        }
+      }
+      const unwantedData=current.next;
+      const nextData=unwantedData.next;
+      current.next=nextData;
+      this.size--;
+    }
+  }
 }
 const linkedList = new LinkedList();
 linkedList.add(21);
@@ -83,6 +105,9 @@ linkedList.add(6)
 linkedList.add(41)
 linkedList.add(92)
 linkedList.add(2)
-linkedList.addFirst(36)
-linkedList.insertAt(2, 27);
+linkedList.add(87)
+linkedList.add(7)
+// linkedList.addFirst(36)
+// linkedList.insertAt(2, 27);
+linkedList.removeAt(0);
 linkedList.printData();
